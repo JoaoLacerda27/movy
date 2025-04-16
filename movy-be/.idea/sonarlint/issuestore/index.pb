@@ -13,3 +13,5 @@ u
 Esrc/main/java/com/movy/shared/configuration/SwaggerConfiguration.java,8\c\8ca2e659551a7d7ef21b5fb57dae37e8637e1174
 y
 Isrc/main/java/com/movy/shared/configuration/ModelMapperConfiguration.java,0\5\05925808a49ecdf016e9a1961741b47f879d8f22
+X
+(gradle/wrapper/gradle-wrapper.properties,f\b\fbe448ebfc3eb2d4e308f6b8b043666f5b57235e
