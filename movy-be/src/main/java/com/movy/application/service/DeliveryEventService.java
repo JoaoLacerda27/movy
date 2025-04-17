@@ -9,6 +9,10 @@ import com.movy.shared.services.ServiceBase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class DeliveryEventService extends ServiceBase {
@@ -26,5 +30,13 @@ public class DeliveryEventService extends ServiceBase {
 
         DeliveryEvent saved = repository.save(event);
         return mapper.map(saved, DeliveryEventDTO.class);
+    }
+
+    public List<DeliveryEventDTO> findByDeliveryId(UUID deliveryId) {
+        List<DeliveryEvent> events = repository.findByDeliveryId(deliveryId);
+
+        return events.stream()
+                .map(event -> mapper.map(event, DeliveryEventDTO.class))
+                .collect(Collectors.toList());
     }
 }
