@@ -11,10 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -30,5 +27,13 @@ public class DeliveryController implements DeliveryDoc {
     public ResponseEntity<DeliveryResponse> newDelivery(@RequestBody @Valid DeliveryRequest request) {
         DeliveryDTO delivery = service.newDelivery(mapper.map(request, DeliveryDTO.class));
         return ResponseEntity.status(HttpStatus.CREATED).body(mapper.map(delivery, DeliveryResponse.class));
+    }
+
+    @Override
+    @GetMapping("/track/{code}")
+    public ResponseEntity<DeliveryResponse> getByTrackingCode(@PathVariable String code) {
+        DeliveryDTO delivery = service.findByTrackingCode(code);
+        DeliveryResponse response = mapper.map(delivery, DeliveryResponse.class);
+        return ResponseEntity.ok(response);
     }
 }

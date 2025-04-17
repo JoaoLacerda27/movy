@@ -10,4 +10,7 @@ import org.springframework.http.ResponseEntity;
 public interface DeliveryDoc {
     @Operation(summary = "create a new delivery")
     ResponseEntity<DeliveryResponse> newDelivery(DeliveryRequest request);
+
+    @Operation(summary = "get a delivery by tracking code")
+    ResponseEntity<DeliveryResponse> getByTrackingCode(String code);
 }
