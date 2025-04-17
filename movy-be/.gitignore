@@ -1,0 +1,97 @@
+# Arquivos de build do Android
+*.apk
+*.aar
+/build
+/outputs
+
+# Arquivos de build do Gradle
+/.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules
+/.idea/workspace.xml
+.DS_Store
+/app/build/generated/source/kapt/debug
+/app/build/generated/source/kapt/release
+/app/build/generated/source/navigation-args
+/app/build/generated/source/navigation-args-debug
+/app/build/generated/source/navigation-args-release
+
+# Arquivos de log e temporários
+*.log
+*.tmp
+/tmp/
+
+# Arquivos de configuração local
+/app/google-services.json
+
+# Arquivos de backup
+*.bak
+*.orig
+*~
+
+# Outros arquivos gerados pelo sistema operacional ou IDE
+.DS_Store
+Thumbs.db
+
+# Arquivos do Kotlin Compiler
+/app/build/tmp/kotlin-classes/debug
+/app/build/tmp/kotlin-classes/release
+
+# Arquivos de relatório de cobertura de código
+/app/build/reports/jacoco
+
+# Arquivos de saída de lint
+/app/build/reports/lint
+
+# Arquivos de saída de detecção de dependências não utilizadas
+/app/build/reports/dependency-updates
+
+# Arquivos de saída de verificação de dependências
+/app/build/reports/dependency-report.html
+
+# Arquivos de saída de análise de código estático (Detekt, etc.)
+/app/build/reports/detekt
+
+# Navegação Safe Args generated files (se você usa Navigation Component)
+/app/build/generated/source/navigation-args/*
+
+# Data Binding generated files
+/app/build/generated/data_binding/*
+
+# Hilt generated files
+/app/build/generated/hilt/*
+
+# Room generated files
+/app/build/generated/source/kapt/*
+
+# Exemplo de arquivo Keystore local (NÃO COMMITE SEU ARQUIVO DE KEYSTORE REAL!)
+# *.jks
+# *.keystore
+
+# Arquivos do Profile Installer
+/app/build/outputs/androidTest-results
+/app/build/outputs/code-coverage
+/app/build/outputs/performance-snapshots
+
+# Cache do Android Studio
+.gradle
+.idea/caches
+.idea/shelf
+.idea/kotlinc
+.idea/compiler.xml
+
+# Arquivos de módulos do Android Studio
+*.iml
+
+# Build output de módulos de feature (se você usa módulos dinâmicos)
+*/build
+
+# Arquivos de Proguard/R8
+/app/build/outputs/mapping/release/
+/app/build/outputs/proguard/release/
+
+# Outros arquivos específicos do seu projeto que você não quer commitar
+# exemplo: secret.properties
+# /config/secret.properties
