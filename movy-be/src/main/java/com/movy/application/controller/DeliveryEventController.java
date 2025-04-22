@@ -38,7 +38,7 @@ public class DeliveryEventController implements DeliveryEventDoc {
 
         List<DeliveryEventResponse> response = events.stream()
                 .map(event -> mapper.map(event, DeliveryEventResponse.class))
-                .collect(Collectors.toList());
+                .toList();
 
         return ResponseEntity.ok(response);
     }
