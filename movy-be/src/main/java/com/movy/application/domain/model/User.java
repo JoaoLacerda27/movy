@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -18,6 +19,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @AllArgsConstructor
+@SuperBuilder
 @NoArgsConstructor
 @Entity
 @Table(name = "users",
