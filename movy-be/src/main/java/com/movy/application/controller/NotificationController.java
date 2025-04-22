@@ -1,14 +1,13 @@
 package com.movy.application.controller;
 
+import com.movy.application.controller.documentation.NotificationDoc;
 import com.movy.application.controller.response.NotificationResponse;
 import com.movy.application.dto.NotificationDTO;
 import com.movy.application.service.NotificationService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -16,11 +15,12 @@ import java.util.UUID;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/v1/notifications")
-public class NotificationController {
+public class NotificationController implements NotificationDoc {
 
     private final NotificationService service;
     private final ModelMapper mapper;
 
+    @GetMapping("/{userId}")
     public ResponseEntity<List<NotificationResponse>> getByUserId(@RequestParam UUID userId) {
         List<NotificationDTO> notifications = service.getNotificationsByUserId(userId);
 
@@ -29,5 +29,11 @@ public class NotificationController {
                 .toList();
 
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/read/{id}")
+    public ResponseEntity<Void> markAsRead(@PathVariable UUID id) {
+        service.markAsRead(id);
+        return ResponseEntity.noContent().build();
     }
 }
