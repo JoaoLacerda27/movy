@@ -26,6 +26,15 @@ public class DeliveryEventConsumer {
     public void consume(DeliveryEventDTO dto) {
         log.info("Mensagem recebida da fila: {}", dto);
 
+        Delivery delivery = mapper.map(dto.getDelivery(), Delivery.class);
+        String message = "Novo evento de entrega: " + dto.getEventType();
+
+        boolean exists = notificationRepository.existsByDeliveryIdAndMessage(delivery.getId(), message);
+        if (exists) {
+            log.info("Notificação duplicada ignorada para delivery={} com mensagem='{}'", delivery.getId(), message);
+            return;
+        }
+
         Notification notification = Notification.builder()
                 .delivery(mapper.map(dto.getDelivery(), Delivery.class))
                 .message("Novo evento de entrega: " + dto.getEventType())
