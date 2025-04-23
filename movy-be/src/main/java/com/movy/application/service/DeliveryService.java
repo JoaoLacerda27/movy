@@ -8,6 +8,10 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+import java.util.List;
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class DeliveryService extends ServiceBase {
@@ -27,5 +31,12 @@ public class DeliveryService extends ServiceBase {
                 .orElseThrow(() -> new EntityNotFoundException("Entrega não encontrada."));
 
         return mapper.map(delivery, DeliveryDTO.class);
+    }
+
+    public List<DeliveryDTO> getDeliveries(UUID senderId, UUID recipientId, Instant startDate, Instant endDate, String status) {
+        List<Delivery> deliveries = repository.findDeliveriesWithFilters(senderId, recipientId, startDate, endDate, status);
+        return deliveries.stream()
+                .map(delivery -> mapper.map(delivery, DeliveryDTO.class))
+                .toList();
     }
 }

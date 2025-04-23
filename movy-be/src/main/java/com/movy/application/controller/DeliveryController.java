@@ -13,6 +13,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Instant;
+import java.util.List;
+import java.util.UUID;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/v1/deliveries")
@@ -35,5 +39,22 @@ public class DeliveryController implements DeliveryDoc {
         DeliveryDTO delivery = service.findByTrackingCode(code);
         DeliveryResponse response = mapper.map(delivery, DeliveryResponse.class);
         return ResponseEntity.ok(response);
+    }
+
+    @Override
+    @GetMapping
+    public ResponseEntity<List<DeliveryResponse>> getDeliveries(
+            @RequestParam(required = false) UUID senderId,
+            @RequestParam(required = false) UUID recipientId,
+            @RequestParam(required = false) Instant startDate,
+            @RequestParam(required = false) Instant endDate,
+            @RequestParam(required = false) String status) {
+
+        List<DeliveryDTO> deliveries = service.getDeliveries(senderId, recipientId, startDate, endDate, status);
+        List<DeliveryResponse> responses = deliveries.stream()
+                .map(delivery -> mapper.map(delivery, DeliveryResponse.class))
+                .toList();
+
+        return ResponseEntity.ok(responses);
     }
 }
