@@ -23,5 +23,21 @@ services:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
 
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: movy_api
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - rabbitmq
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/movy
+      SPRING_DATASOURCE_USERNAME: movy_user
+      SPRING_DATASOURCE_PASSWORD: movy_pass
+      SPRING_RABBITMQ_HOST: rabbitmq
+
 volumes:
   pgdata:
