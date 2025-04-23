@@ -2,6 +2,7 @@ package com.movy.application.service;
 
 import com.movy.application.domain.model.Delivery;
 import com.movy.application.dto.DeliveryDTO;
+import com.movy.application.integration.messaging.DeliveryEventProducer;
 import com.movy.application.repository.DeliveryRepository;
 import com.movy.shared.services.ServiceBase;
 import jakarta.persistence.EntityNotFoundException;

@@ -3,6 +3,7 @@ package com.movy.application.service;
 import com.movy.application.domain.model.Delivery;
 import com.movy.application.domain.model.DeliveryEvent;
 import com.movy.application.dto.DeliveryEventDTO;
+import com.movy.application.integration.messaging.DeliveryEventProducer;
 import com.movy.application.repository.DeliveryEventRepository;
 import com.movy.application.repository.DeliveryRepository;
 import com.movy.shared.services.ServiceBase;
@@ -21,6 +22,8 @@ public class DeliveryEventService extends ServiceBase {
 
     private final DeliveryRepository deliveryRepository;
 
+    private final DeliveryEventProducer deliveryEventProducer;
+
     public DeliveryEventDTO registerEvent(DeliveryEventDTO dto) {
         Delivery delivery = deliveryRepository.findById(dto.getDelivery().getId())
                 .orElseThrow(() -> new RuntimeException("Delivery not found"));
@@ -29,7 +32,12 @@ public class DeliveryEventService extends ServiceBase {
         event.setDelivery(delivery);
 
         DeliveryEvent saved = repository.save(event);
-        return mapper.map(saved, DeliveryEventDTO.class);
+
+        var response = mapper.map(saved, DeliveryEventDTO.class);
+
+        deliveryEventProducer.publish(response);
+
+        return response;
     }
 
     public List<DeliveryEventDTO> findByDeliveryId(UUID deliveryId) {
@@ -37,6 +45,6 @@ public class DeliveryEventService extends ServiceBase {
 
         return events.stream()
                 .map(event -> mapper.map(event, DeliveryEventDTO.class))
-                .collect(Collectors.toList());
+                .toList();
     }
 }
