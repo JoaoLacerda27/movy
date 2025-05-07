@@ -6,7 +6,6 @@ import com.movy.application.repository.NotificationRepository;
 import com.movy.shared.exceptions.types.BusinessException;
 import com.movy.shared.exceptions.types.ResourceNotFoundException;
 import com.movy.shared.services.ServiceBase;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
