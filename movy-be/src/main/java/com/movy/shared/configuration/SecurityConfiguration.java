@@ -30,9 +30,9 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/public/**").permitAll()
-                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/api/delivery/**").hasRole("DELIVERYMAN")
+                        .requestMatchers("/v1/**").permitAll()
+                        .requestMatchers("/v1/**").hasRole("ADMIN")
+                        .requestMatchers("/v1/delivery/**").hasRole("DELIVERYMAN")
                         .anyRequest().authenticated()
                 )
                 .httpBasic(httpBasic -> httpBasic.disable()); // ou .formLogin()
