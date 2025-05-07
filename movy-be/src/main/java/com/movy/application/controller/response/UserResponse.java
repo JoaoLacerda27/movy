@@ -1,5 +1,6 @@
 package com.movy.application.controller.response;
 
+import com.movy.application.domain.enums.UserRole;
 import lombok.Data;
 
 import java.time.Instant;
@@ -12,5 +13,5 @@ public class UserResponse {
     private String name;
     private String email;
     private String phone;
-    private String role;
+    private UserRole role;
 }

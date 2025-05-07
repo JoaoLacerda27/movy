@@ -1,5 +1,6 @@
 package com.movy.application.dto;
 
+import com.movy.application.domain.enums.UserRole;
 import com.movy.shared.dtos.DtoBase;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -13,5 +14,5 @@ public class UserDTO extends DtoBase {
     private String email;
     private String password;
     private String phone;
-    private String role;
+    private UserRole role;
 }
