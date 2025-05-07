@@ -1,6 +1,7 @@
 package com.movy.shared.security.filter;
 
 import com.movy.shared.security.service.CustomUserDetailsService;
+import com.movy.shared.security.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
