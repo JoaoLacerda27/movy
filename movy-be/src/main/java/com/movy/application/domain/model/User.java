@@ -1,5 +1,6 @@
 package com.movy.application.domain.model;
 
+import com.movy.application.domain.enums.UserRole;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -58,8 +59,7 @@ public class User {
     @Column
     private String phone;
 
-    @NotBlank
-    @Size(max = 120)
-    @Column
-    private String role;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private UserRole role;
 }
